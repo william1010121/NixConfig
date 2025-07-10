@@ -1,0 +1,40 @@
+colorscheme evening
+ca Hash w !g++ -E - \| sed "/^\#.*$/d" \| tr -d '[:space:]' \| md5sum \| cut -c-6
+syntax on
+set tabstop=4 
+set expandtab
+set shiftwidth=4
+set number
+set is hls
+
+set backspace=indent,eol,start
+filetype indent on 
+filetype plugin on
+set cindent
+
+set wildmenu
+
+imap {<CR> {<CR>}<Esc>O
+
+autocmd FileType python setlocal omnifunc=python3complete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+
+nmap <C-x><C-e> :w<CR>:!./run && diff output.txt ans.txt<CR>
+
+
+set cscopetag
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_banner = 0
+
+call plug#begin()
+
+" List your plugins here
+" {;Plug 'github/copilot.vim'
+Plug 'dapplebeforedawn/vim-typing-practice'
+
+call plug#end()
+let mapleader = " "
+nnoremap <leader>h <C-w>h
+nnoremap <leader>l <C-w>l
