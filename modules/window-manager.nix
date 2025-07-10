@@ -7,7 +7,8 @@
     package = pkgs.yabai;
     enableScriptingAddition = true;
     config = {
-      focus_follows_mouse = "autofocus";
+      focus_follows_mouse = "off";
+      mouse_follows_focus = "on";
       window_placement = "second_child";
       window_topmost = "off";
       window_shadow = "on";
@@ -25,7 +26,6 @@
       mouse_action1 = "move";
       mouse_action2 = "resize";
       mouse_drop_action = "swap";
-      mouse_follows_focus = "on";
       layout = "bsp";
       top_padding = "05";
       bottom_padding = "10";
