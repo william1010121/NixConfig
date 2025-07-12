@@ -32,6 +32,8 @@
     # '';
     ".zshrc".source = ../config/zshrc;
     ".vimrc".source = ../config/vimrc;
+    ".gitconfig".source = ../config/gitconfig/gitconfig;
+    ".gitconfig-csit".source = ../config/gitconfig/gitconfig-csit;
   };
 
   programs.zsh = {

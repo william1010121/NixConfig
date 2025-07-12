@@ -1,0 +1,19 @@
+[user]
+	email = william950615@gmail.com
+	name = william
+[safe]
+	directory = /Users/guoshengwei/Desktop/python/bot
+[core]
+	compression = 0
+[http]
+	postBuffer = 1M
+	maxRequestBuffer = 100M
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+
+[includeIf "gitdir:~/CSIT/"] # Note the trailing slash!
+path = ~/.gitconfig-csit
