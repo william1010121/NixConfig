@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: ieeee header for latex class
+# uuid: ieee
+# key: IEEE
+# condition: t
+# --
+#+AUTHOR: william
+#+LATEX_CLASS: IEEEtran
+#+LATEX_CLASS_OPTIONS: [conference]

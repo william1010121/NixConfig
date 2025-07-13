@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: sage-show-latex-format
+# uuid: sage-show-latex-format
+# key: sage-show
+# condition: t
+# --
+latex_code_derivative = latex($0)
+print(f"$$\n{latex_code_derivative}\n$$")

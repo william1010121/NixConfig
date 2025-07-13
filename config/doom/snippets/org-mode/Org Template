@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: org template header
+# uuid: org-template
+# key: orgtemplate
+# condition: t
+# --
+#+options: num:3
+#+SETUPFILE: ~/EmacsSetupConfig/cache/readtheorg.setup

@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: test
+# uuid: test-verilog
+# key: ttt
+# condition: t
+# --
+
+  `VC_TEST_CASE_BEGIN( $1, "$2" )
+  `VC_TEST_CASE_INIT(68, 32)
+  begin
+  $0
+  end
+  `VC_TEST_CASE_END

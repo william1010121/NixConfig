@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: spoiler
+# uuid: org-spoiler
+# key: spoiler
+# condition: t
+# --
+#+begin_details $1
+$0
+#+end_details

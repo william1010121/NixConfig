@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: aling at
+# uuid: alningat
+# key: alnat
+# condition: t
+# --
+\begin{alignat*}{$1}
+$2
+\end{alignat*}
+$0

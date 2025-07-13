@@ -1,0 +1,80 @@
+# -*- mode: snippet -*-
+# name: verilog-assem
+# uuid: verilog-assem
+# key: verilog-assem
+# condition: t
+# --
+
+# --- Syntax Highlighting Setup ---
+#+LATEX_HEADER: \usepackage{xcolor} % Required for colors
+#+LATEX_HEADER: \usepackage{listings}
+
+# Define colors for syntax highlighting
+#+LATEX_HEADER: \definecolor{codegreen}{rgb}{0,0.6,0}
+#+LATEX_HEADER: \definecolor{codegray}{rgb}{0.5,0.5,0.5}
+#+LATEX_HEADER: \definecolor{codepurple}{rgb}{0.58,0,0.82}
+#+LATEX_HEADER: \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+#+LATEX_HEADER: \definecolor{keywordblue}{rgb}{0.13,0.13,1}
+#+LATEX_HEADER: \definecolor{stringred}{rgb}{0.8,0,0}
+
+# Define custom languages for listings
+#+LATEX_HEADER: \lstdefinelanguage{Verilog}{ % Ensure Verilog is defined/customized if needed
+#+LATEX_HEADER:   keywords={always, assign, begin, buf, bufif0, bufif1, case, casex, casez, cmos, deassign, default, defparam, design, disable, edge, else, end, endcase, endfunction, endmodule, endprimitive, endspecify, endtable, endtask, event, for, force, forever, fork, function, highz0, highz1, if, initial, inout, input, integer, join, large, logic, macromodule, medium, module, nand, negedge, nmos, nor, not, notif0, notif1, or, output, parameter, pmos, posedge, primitive, pulldown, pullup, rcmos, reg, release, repeat, rnmos, rpmos, rtran, rtranif0, rtranif1, scalared, small, specify, specparam, strong0, strong1, supply0, supply1, table, task, time, tran, tranif0, tranif1, tri, tri0, tri1, triand, trior, trireg, vectored, wait, wand, weak0, weak1, while, wire, wor, xnor, xor},
+#+LATEX_HEADER:   keywordstyle=\color{keywordblue}\bfseries,
+#+LATEX_HEADER:   ndkeywords={generate, endgenerate}, % Add other keyword classes if needed
+#+LATEX_HEADER:   ndkeywordstyle=\color{darkgray}\bfseries,
+#+LATEX_HEADER:   identifierstyle=\color{black},
+#+LATEX_HEADER:   sensitive=false,
+#+LATEX_HEADER:   comment=[l]//,
+#+LATEX_HEADER:   morecomment=[s]{/*}{*/},
+#+LATEX_HEADER:   commentstyle=\color{codegreen},
+#+LATEX_HEADER:   stringstyle=\color{stringred},
+#+LATEX_HEADER:   morestring=[b]",
+#+LATEX_HEADER:   morestring=[d]'
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \lstdefinelanguage{assembly}{ % Basic definition for 'assembly' (RISC-V like)
+#+LATEX_HEADER:   keywords={add, addi, sub, lui, auipc, xor, xori, or, ori, and, andi, sll, slli, srl, srli, sra, srai, slt, slti, sltu, sltiu, beq, bne, blt, bge, bltu, bgeu, jal, jalr, lb, lh, lw, lbu, lhu, sb, sh, sw, ecall, ebreak, csrrw, csrrs, csrrc, csrrwi, csrrsi, csrrci, mul, mulh, mulhsu, mulhu, div, divu, rem, remu, li, la, mv, j, nop, csrw}, % Added csrw
+#+LATEX_HEADER:   keywordstyle=\color{keywordblue}\bfseries,
+#+LATEX_HEADER:   ndkeywords={x0, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18, x19, x20, x21, x22, x23, x24, x25, x26, x27, x28, x29, x30, x31, zero, ra, sp, gp, tp, t0, t1, t2, s0, fp, s1, a0, a1, a2, a3, a4, a5, a6, a7, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, t3, t4, t5, t6, pc}, % RISC-V registers/ABI names
+#+LATEX_HEADER:   ndkeywordstyle=\color{codepurple},
+#+LATEX_HEADER:   identifierstyle=\color{black},
+#+LATEX_HEADER:   sensitive=false, % Instructions often case-insensitive
+#+LATEX_HEADER:   comment=[l]\#, % Comments start with # (like GAS)
+#+LATEX_HEADER:   morecomment=[l]//, % Allow // comments too
+#+LATEX_HEADER:   morecomment=[l];, % Allow ; comments
+#+LATEX_HEADER:   stringstyle=\color{stringred},
+#+LATEX_HEADER:   morestring=[b]",
+#+LATEX_HEADER:   morestring=[b]'
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \lstdefinelanguage{text}{ % Define 'text' language to prevent errors - no special highlighting
+#+LATEX_HEADER:   keywords={},
+#+LATEX_HEADER:   comment=[l]{}, % No comment char
+#+LATEX_HEADER:   stringstyle={}, % No string style
+#+LATEX_HEADER:   basicstyle=\small\ttfamily % Just use the basic style
+#+LATEX_HEADER: }
+
+# Configure listings package globally
+#+LATEX_HEADER: \lstset{
+#+LATEX_HEADER:   backgroundcolor=\color{backcolour},
+#+LATEX_HEADER:   commentstyle=\color{codegreen},      % Default comment style
+#+LATEX_HEADER:   keywordstyle=\color{keywordblue}\bfseries, % Default keyword style
+#+LATEX_HEADER:   numberstyle=\tiny\color{codegray},
+#+LATEX_HEADER:   stringstyle=\color{stringred},       % Default string style
+#+LATEX_HEADER:   basicstyle=\small\ttfamily,
+#+LATEX_HEADER:   breakatwhitespace=false,
+#+LATEX_HEADER:   breaklines=true,
+#+LATEX_HEADER:   captionpos=b,
+#+LATEX_HEADER:   keepspaces=true,
+#+LATEX_HEADER:   numbers=left,
+#+LATEX_HEADER:   numbersep=5pt,
+#+LATEX_HEADER:   showspaces=false,
+#+LATEX_HEADER:   showstringspaces=false,
+#+LATEX_HEADER:   showtabs=false,
+#+LATEX_HEADER:   tabsize=2,
+#+LATEX_HEADER:   columns=flexible,
+#+LATEX_HEADER:   % No default language set here, it will be picked from the block
+#+LATEX_HEADER: }
+
+# --- End Syntax Highlighting Setup ---

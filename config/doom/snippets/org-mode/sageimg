@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: sageimg
+# uuid: sageimg
+# key: sageimg
+# condition: t
+# --
+#+begin_src sage :file images/${1:file}.png :exports both :results file
+`%`$0
+#+end_src

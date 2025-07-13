@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: Xelatex math enviroment
+# uuid: Xelatexmathenviroment
+# key: xelatex
+# condition: t
+# --
+#+LATEX_COMPILER: xelatex
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \xeCJKsetup{AutoFakeBold=true, AutoFakeSlant=true}
+#+LATEX_HEADER: \setCJKmainfont{kaiu.ttf} % Set default Chinese font.
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \setlength\parindent{0pt}

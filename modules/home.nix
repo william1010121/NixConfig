@@ -36,6 +36,10 @@
     ".gitconfig-csit".source = ../config/gitconfig/gitconfig-csit;
   };
 
+  xdg.configFile = {
+    "doom".source = ../config/doom;
+  };
+
   programs.zsh = {
     enable = true;
     # autocd = true;

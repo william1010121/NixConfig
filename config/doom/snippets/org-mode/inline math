@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: inline math
+# key: eq
+# expand-env: ((yas-indent-line 'fixed))
+# --
+\\($0\\)

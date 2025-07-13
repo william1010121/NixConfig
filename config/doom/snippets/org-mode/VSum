@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: sum  with subscript
+# uuid: sum with subscript
+# key: sumn
+# condition: t
+# --
+\sum_{ $1 } $0

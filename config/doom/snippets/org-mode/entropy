@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: entropy
+# uuid: entropy
+# key: ent
+# condition: t
+# --
+${1:p(x)} \log $1 $0

@@ -1,0 +1,9 @@
+# key: tbmatrix
+# name: tbmatrix
+# --
+% BEGIN RECEIVE ORGTBL ${1:matrix}
+% END RECEIVE ORGTBL ${1}
+#+ORGTBL: SEND $1 orgtbl-to-latex :tstart "\\\\begin{${2:bmatrix}}" :tend "\\\\end{$2}" :noexport:
+| 4 | 4 | 5 |
+| 9 | c | 3 |
+| k | e | 9 |
