@@ -37,6 +37,7 @@
       sudo yabai --load-sa
       yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
       osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+      yabai -m config external_bar all:28:0 # If not using a status bar like sketchybar/ubersicht
 
 
       # yabai -m space --create
