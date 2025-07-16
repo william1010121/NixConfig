@@ -39,6 +39,7 @@
   xdg.configFile."doom" = {
     source = ../config/doom;
     recursive = true;
+    force = true;
   };
 
   programs.zsh = {
