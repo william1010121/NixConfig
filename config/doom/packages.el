@@ -145,3 +145,5 @@
 
 ;; GPTEL
 (package! gptel :recipe (:nonrecursive t))
+
+(package! posframe)

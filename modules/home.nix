@@ -36,8 +36,9 @@
     ".gitconfig-csit".source = ../config/gitconfig/gitconfig-csit;
   };
 
-  xdg.configFile = {
-    "doom".source = ../config/doom;
+  xdg.configFile."doom" = {
+    source = ../config/doom;
+    recursive = true;
   };
 
   programs.zsh = {
