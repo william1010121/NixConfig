@@ -1,5 +1,43 @@
 { config, pkgs, ... }:
 
+let
+  toggle-reminders-script = pkgs.writeShellScript "toggle-reminders.sh" ''
+    #!${pkgs.bash}/bin/bash
+    export PATH=${pkgs.lib.makeBinPath [ pkgs.yabai pkgs.jq pkgs.coreutils ]}:$PATH
+
+    APP="Reminders"
+
+    # Check if Reminders is the frontmost application
+    IS_FRONTMOST=$(osascript -e 'tell application "System Events" to get name of first process whose frontmost is true' | tr -d '"')
+
+    if [ "$IS_FRONTMOST" = "$APP" ]; then
+        # If it is frontmost, hide it
+        osascript -e "tell application \"System Events\" to set visible of process \"$APP\" to false"
+    else
+        # If it's not frontmost, bring it to the front
+        open -a "$APP"
+        sleep 0.2 # Give it a moment to come to the front
+
+        # Get the window ID for the Reminders window
+        WINDOW_ID=$(yabai -m query --windows | jq --arg app "$APP" '.[] | select(.app == $app) | .id' | head -n 1)
+
+        if [ -n "$WINDOW_ID" ]; then
+            # Focus the window first
+            yabai -m window --focus "$WINDOW_ID"
+            
+            
+            
+            # Ensure the window is floating
+            IS_FLOATING=$(yabai -m query --windows --window "$WINDOW_ID" | jq -r '.["is-floating"]')
+            if [ "$IS_FLOATING" = "false" ]; then
+                yabai -m window "$WINDOW_ID" --toggle float
+            fi
+
+            
+        fi
+    fi
+  '';
+in
 {
   # yabai & skhd
   services.yabai = {
@@ -47,12 +85,19 @@
 
       ## focus previous window when window destroyed
       yabai -m signal --add event=window_destroyed action="yabai -m window --focus mouse"
+
+      # Rule for Reminders app
+      yabai -m rule --add app="^Reminders$" floating=on
     '';
   };
 
   services.skhd = {
     enable = true;
     package = pkgs.skhd;
-    skhdConfig = builtins.readFile ../config/skhdrc;
+    skhdConfig = (builtins.readFile ../config/skhdrc) + ''
+
+      # Toggle Reminders at center of screen
+      cmd + alt + shift - r : ${toggle-reminders-script}
+    '';
   };
 }
