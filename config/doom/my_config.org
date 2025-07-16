@@ -1,0 +1,745 @@
+#+title: My Config
+#+options: num:3
+
+* Todofile count
+
+#+begin_src emacs-lisp
+;; Put this somewhere in your ~/.config/doom/config.el
+(defun my/org-agenda-todo-count ()
+  "Count all TODO items across your Org agenda files."
+  (interactive)
+  (let ((files org-agenda-files) ; Correct variable access
+        (count 0))
+    ;; Check if org-agenda-files is actually set before proceeding
+    (if (listp files)
+        (dolist (file files)
+          (when (and file (stringp file) (file-exists-p file)) ; Add check file is string and exists
+             (with-temp-buffer
+               (ignore-errors ; Ignore errors from files that can't be read/parsed
+                 (insert-file-contents file)
+                 ;; Go to beginning of buffer to ensure search starts there
+                 (goto-char (point-min))
+                 ;; Use re-search-forward within a loop properly
+                 (while (re-search-forward "^[ \t]*\\*+ +\\(TODO\\|NEXT\\|WAITING\\)" nil t)
+                   (setq count (1+ count)))))))
+      (message "Warning: org-agenda-files is not a list or is empty."))
+    (message "Total TODO count: %d" count)
+    count))
+#+end_src
+* Tabs key rebinding
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      ;; Create a prefix ", t" with a descriptive name
+      :prefix ("k" . "tabs")
+
+      ;; Example tab bindings
+      :desc "Tab Next"     "n" #'tab-next
+      :desc "Tab Previous" "p" #'tab-previous
+      :desc "Tab Rename" "r" #'tab-rename
+      :desc "Tab Open in dired" "d" #'dired-other-tab
+      :desc "centaur Tab Next"     "f" #'centaur-tabs-forward
+      :desc "centaru Tab Previous" "b" #'centaur-tabs-backward
+      :desc "fine fire other tab" "C-f" #'find-file-other-tab
+      :desc "tab close" "k" #'tab-close
+      :desc "Tab New"      "N" #'tab-new
+      ;; Add other tab-related commands similarly
+      )
+#+END_SRC
+
+* Org mode
+** org mode latex
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      ;; Create a prefix ", t" with a descriptive name
+      :prefix ("d" . "latex")
+
+      ;; Example tab bindings
+      :desc "cdxmath modify" "d" #'cdlatex-math-modify
+      :desc "org auto preview" "p" #'org-latex-preview-auto-mode
+      :desc "org center mode" "c" #'org-latex-preview-center-mode
+      :desc "org clear cache" "C" #'org-latex-preview-clear-cache
+      ;; Add other tab-related commands similarly
+      )
+#+END_SRC
+
+** Laas (latex auto activate snippet)
+#+begin_src emacs-lisp
+(use-package laas
+  :hook (org-mode . laas-mode)
+  :config ; do whatever here
+  (aas-set-snippets 'laas-mode
+                    ;; set condition!
+                    :cond #'texmathp ; expand only while in math
+                    "supp" "\\supp"
+                    "<=" "\\leq"
+                    "On" "O(n)"
+                    "O1" "O(1)"
+                    "Olog" "O(\\log n)"
+                    "Olon" "O(n \\log n)"
+                    "lim" (lambda () (interactive)
+                            (yas-expand-snippet "\\lim_{$1} $0"))
+                    "upp" (lambda () (interactive)
+                            (yas-expand-snippet "_{$1}^{$2} $0"))
+                    ;; bind to functions!
+                    "Sum" (lambda () (interactive)
+                            (yas-expand-snippet "\\sum_{$1}^{$2} $0"))
+                    "Span" (lambda () (interactive)
+                             (yas-expand-snippet "\\Span($1)$0"))
+                    "%%" (lambda () (interactive)
+                             (yas-expand-snippet "\\bmod{$1}$0"))
+                    ;; for physic
+                    "DDD" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{\\partial$1}{\\partial$2}$0"))
+                    "DDx" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{\\partial$1}{\\partial x^{2}}$0"))
+                    "Dx" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{\\partial$1}{\\partial x}$0"))
+                    "DDt" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{\\partial$1}{\\partial t^{2}}$0"))
+                    "Dt" (lambda () (interactive)
+                             (yas-expand-snippet "\\frac{\\partial$1}{\\partial t}$0"))
+                    "mihdx" "\\left( -i \\hbar \\frac{\\partial}{\\partial x}\\right)"
+                    "ihdt" "\\left( i \\hbar \\frac{\\partial}{\\partial t}\\right)"
+                    "hs2m" "\\frac{\\hbar^{2}}{2m}"
+
+                    ;;;; for discrete math
+                    "lrce" (lambda () (interactive)
+                             (yas-expand-snippet "\\left \\lceil $1 \\right \\rceil$0"))
+                    "lrfl" (lambda () (interactive)
+                             (yas-expand-snippet "\\left \\lfloor $1 \\right \\rfloor$0"))
+                    "Bn" (lambda () (interactive)
+                             (yas-expand-snippet "\\binom{$1}{$2} $0"))
+
+                    "CU" "\\bigcup"
+                    "CA" "\\bigcap"
+                    "PP" "\\prec"
+                    "qed" "_{\\#}"
+
+
+
+                    ;;;; for information theory
+                    ;;; "oxx" "\\Omega_{X}"
+                    ;;; "oyy" "\\Omega_{Y}"
+                    ;;; "oyy" "\\Omega_{Y}"
+                    ;;; "xon"  "x_1, x_2, \\dots  x_n"
+                    ;;; "nHe"  "2^{n \\left( H(x) + \\epsilon  \\right)}"
+                    ;;; "mnHe"  "2^{-n \\left( H(x) + \\epsilon  \\right)}"
+                    ;; add accent snippets
+                    :cond #'laas-object-on-left-condition
+                    "qq" (lambda () (interactive) (laas-wrap-previous-object "sqrt"))))
+#+end_src
+** Beacon
+#+begin_src emacs-lisp
+;; (beacon-mode 1)
+#+end_src
+
+
+
+** Org Cdlatex with Yasnippet TAB
+
+#+begin_src emacs-lisp
+;; CDLatex integration with YaSnippet in Doom Emacs
+(after! (cdlatex yasnippet)
+;; https://github.com/tecosaur/LaTeX-auto-activating-snippets/issues/31
+  (define-key cdlatex-mode-map "<" nil)
+  ;; Define function to handle cdlatex in yas fields
+  (defun cdlatex-in-yas-field ()
+    "Check if we're at the end of the Yas field"
+    (when-let* ((_ (overlayp yas--active-field-overlay))
+                (end (overlay-end yas--active-field-overlay)))
+      (if (>= (point) end)
+          ;; Call yas-next-field if cdlatex can't expand here
+          (let ((s (thing-at-point 'sexp)))
+            (unless (and s (assoc (substring-no-properties s) cdlatex-command-alist-comb))
+              (yas-next-field-or-maybe-expand)
+              t))
+        ;; otherwise expand and jump to the correct location
+        (let (cdlatex-tab-hook minp)
+          (setq minp (min (save-excursion (cdlatex-tab) (point))
+                          (overlay-end yas--active-field-overlay)))
+          (goto-char minp)
+          t))))
+
+  ;; Define function to handle next field or cdlatex
+  (defun yas-next-field-or-cdlatex ()
+    "Jump to the next Yas field correctly with cdlatex active."
+    (interactive)
+    (if (or (bound-and-true-p cdlatex-mode)
+            (bound-and-true-p org-cdlatex-mode))
+        (cdlatex-tab)
+      (yas-next-field-or-maybe-expand)))
+
+  ;; Add hook for cdlatex-tab
+  (add-hook 'cdlatex-tab-hook #'yas-expand)
+  (add-hook 'cdlatex-tab-hook #'cdlatex-in-yas-field)
+
+  ;; Set keybindings for yas-keymap
+  (map! :map yas-keymap
+        "<tab>" #'yas-next-field-or-cdlatex
+        "TAB"   #'yas-next-field-or-cdlatex))
+#+end_src
+
+
+*** org latex preview on cneter
+#+begin_src emacs-lisp
+;; code for centering LaTeX previews -- a terrible idea
+(use-package org-latex-preview
+  :config
+  (defun my/org-latex-preview-uncenter (ov)
+    (overlay-put ov 'before-string nil))
+  (defun my/org-latex-preview-recenter (ov)
+    (overlay-put ov 'before-string (overlay-get ov 'justify)))
+  (defun my/org-latex-preview-center (ov)
+    (save-excursion
+      (goto-char (overlay-start ov))
+      (when-let* ((elem (org-element-context))
+                  ((or (eq (org-element-type elem) 'latex-environment)
+                       (string-match-p "^\\\\\\[" (org-element-property :value elem))))
+                  (img (overlay-get ov 'display))
+                  (prop `(space :align-to (- center (0.55 . ,img))))
+                  (justify (propertize " " 'display prop 'face 'default)))
+        (overlay-put ov 'justify justify)
+        (overlay-put ov 'before-string (overlay-get ov 'justify)))))
+  (define-minor-mode org-latex-preview-center-mode
+    "Center equations previewed with `org-latex-preview'."
+    :global nil
+    (if org-latex-preview-center-mode
+        (progn
+          (add-hook 'org-latex-preview-overlay-open-functions
+                    #'my/org-latex-preview-uncenter nil :local)
+          (add-hook 'org-latex-preview-overlay-close-functions
+                    #'my/org-latex-preview-recenter nil :local)
+          (add-hook 'org-latex-preview-overlay-update-functions
+                    #'my/org-latex-preview-center nil :local))
+      (remove-hook 'org-latex-preview-overlay-close-functions
+                    #'my/org-latex-preview-recenter)
+      (remove-hook 'org-latex-preview-overlay-update-functions
+                    #'my/org-latex-preview-center)
+      (remove-hook 'org-latex-preview-overlay-open-functions
+                    #'my/org-latex-preview-uncenter))))
+#+end_src
+
+*Add hook when latex-preview mode is enable also enable latex-preview-center-mode*
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook #'org-latex-preview-center-mode)
+
+
+#+end_src
+
+** View file other window
+
+#+begin_src emacs-lisp
+(defvar my/previous-file-buffer nil
+  "Holds the buffer of the file opened by `my/view-file-other-window`.")
+(defun my/kill-view-file-buffer ()
+  "Kill the view file buffer and its window if it exists."
+  ;; If the current buffer is the same as my/previous-file-buffer,
+  ;; skip to avoid infinite recursion.
+  (unless (eq (current-buffer) my/previous-file-buffer)
+    (when (and my/previous-file-buffer
+               (buffer-live-p my/previous-file-buffer))
+      (when-let ((win (get-buffer-window my/previous-file-buffer)))
+        (delete-window win))
+      (kill-buffer my/previous-file-buffer)
+      (setq my/previous-file-buffer nil))))
+
+; (defun my/kill-view-file-buffer ()
+;   "Kill the view file buffer and its window if it exists."
+;   (when (and my/previous-file-buffer (buffer-live-p my/previous-file-buffer))
+;     (when-let ((win (get-buffer-window my/previous-file-buffer)))
+;       (delete-window win))
+;     (kill-buffer my/previous-file-buffer)
+;     (setq my/previous-file-buffer nil)))
+
+(defun my/view-file-other-window ()
+  "Open the current file in another window using `view-file-other-window`, keeping focus in the Dired buffer.
+If a previous file buffer is open, it will be killed."
+  (interactive)
+  (if-let ((file (dired-get-file-for-visit)))
+      (progn
+        ;; Kill any existing view file buffer.
+        (my/kill-view-file-buffer)
+        ;; Open the file in another window and store its buffer.
+        (save-selected-window
+          (view-file-other-window file)
+          (setq my/previous-file-buffer (current-buffer))))
+    (message "No file is associated with this buffer.")))
+
+;; When the Dired buffer is killed, ensure the view file buffer is also killed.
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (add-hook 'kill-buffer-hook #'my/kill-view-file-buffer nil t)))
+
+;; When pressing Enter in Dired (which calls `dired-find-file`), kill the view file buffer.
+(with-eval-after-load 'dired
+  (advice-add 'dired-find-file :before #'my/kill-view-file-buffer))
+
+;; Restrict the custom key mapping to Dired mode.
+(after! dired
+  (map! :map dired-mode-map
+        :n "C-<return>" #'my/view-file-other-window))
+
+#+end_src
+
+
+** Org mode publish
+
+#+begin_src comment
+(setq org-publish-project-alist
+      '(
+        ;; First project: Data Analysis Notes
+        ("org-data-ana-notes"
+         :base-directory "~/Desktop/NYCU/Data analzye/"  ; update to your actual path if needed
+         :base-extension "org"
+         :publishing-directory "~/Desktop/NYCU/publish_html/Numeric"  ; desired output folder
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4             ; export up to 4 levels of headlines
+         :section-numbers nil           ; disable automatic section numbering
+         :with-toc t                   ; include a table of contents if desired
+         :html-link-home "./"          ; helps with relative linking
+         :html-link-up "./"
+         :completion-function (lambda (project)
+                                (shell-command "rsync -av ~/Desktop/NYCU/publish_html/Numeric/ guosw@linux1.cs.nycu.edu.tw:~/public_html/Numeric"))
+         )
+
+        ;; Publish static files for Data Analysis Notes
+        ("org-data-ana-static"
+         :base-directory "~/Desktop/NYCU/Data analzye/"
+         :base-extension "css\\|js\\|png\\|jpg\\|gif"
+         :publishing-directory "~/Desktop/NYCU/publish_html/Numeric"
+         :recursive t
+         :publishing-function org-publish-attachment
+         )
+
+        ;; Combined project for Data Analysis (notice the corrected component names)
+        ("org-data-all" :components ("org-data-ana-notes" "org-data-ana-static"))
+
+        ;; Second project: Digital System Notes
+        ("org-digital-sys-notes"
+         :base-directory "~/Desktop/NYCU/digital_system/"  ; update to your actual path if needed
+         :base-extension "org"
+         :publishing-directory "~/Desktop/NYCU/publish_html/digital_system"
+         :recursive t
+         :publishing-function org-html-publish-to-html
+         :headline-levels 4
+         :section-numbers nil
+         :with-toc t
+         :html-link-home "./"
+         :html-link-up "./"
+         :completion-function (lambda (project)
+                                (shell-command "rsync -av ~/Desktop/NYCU/publish_html/digital_system/ guosw@linux1.cs.nycu.edu.tw:~/public_html/digital_system"))
+         )
+
+        ;; Publish static files for Digital System Notes
+        ("org-digital-sys-static"
+         :base-directory "~/Desktop/NYCU/Data analzye/"  ; check if this directory is correct for digital system static files
+         :base-extension "css\\|js\\|png\\|jpg\\|gif"
+         :publishing-directory "~/Desktop/NYCU/publish_html/digital_system"
+         :recursive t
+         :publishing-function org-publish-attachment
+         )
+
+        ;; Combined project for Digital System
+        ("org-digital-all" :components ("org-digital-sys-notes" "org-digital-sys-static"))
+        ))
+#+end_src
+
+#+begin_src emacs-lisp
+(load "~/.config/doom/publish_setup/data-analyze.el")
+(load "~/.config/doom/publish_setup/digital-system.el")
+(load "~/.config/doom/publish_setup/computer-architecture.el")
+(load "~/.config/doom/publish_setup/information-theory.el")
+(load "~/.config/doom/publish_setup/physics.el")
+#+end_src
+** Valign
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook #'valign-mode)
+#+end_src
+
+** load package
+https://mirrors.ibiblio.org/CTAN/macros/latex/contrib/physics/physics.pdf
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+    (add-to-list 'org-latex-packages-alist '("" "physics" t)))
+#+end_src
+
+** org-mindmap
+#+begin_src emacs-lisp
+(load-file "~/.config/doom/package/org-mindmap.el")
+
+;; Live-preview configuration for org-mindmap
+(defcustom org-mindmap-live-preview nil
+  "Enable live preview mode for org-mindmap.
+When enabled, automatically generate PNG mindmaps on save."
+  :type 'boolean
+  :group 'org-mind-map)
+
+(defcustom org-mindmap-live-preview-directory nil
+  "Directory to save live preview PNG files.
+If nil, saves in the same directory as the org file."
+  :type '(choice (const :tag "Same as org file" nil)
+                 (directory :tag "Custom directory"))
+  :group 'org-mind-map)
+
+(defun org-mindmap-live-preview-generate ()
+  "Generate PNG mindmap for live preview on save."
+  (when (and org-mindmap-live-preview
+             (derived-mode-p 'org-mode)
+             (buffer-file-name))
+    (let* ((org-file (buffer-file-name))
+           (base-name (file-name-sans-extension (file-name-nondirectory org-file)))
+           (output-dir (or org-mindmap-live-preview-directory
+                          (file-name-directory org-file)))
+           (png-file (expand-file-name (concat base-name "-mindmap.png") output-dir))
+           (org-mind-map-dot-output '("png")))
+      (condition-case err
+          (progn
+            (org-mind-map-write png-file)
+            (message "Live preview: Generated %s" png-file))
+        (error
+         (message "Live preview error: %s" (error-message-string err)))))))
+
+(defun org-mindmap-toggle-live-preview ()
+  "Toggle live preview mode for org-mindmap."
+  (interactive)
+  (setq org-mindmap-live-preview (not org-mindmap-live-preview))
+  (if org-mindmap-live-preview
+      (progn
+        (add-hook 'after-save-hook #'org-mindmap-live-preview-generate nil t)
+        (message "Org-mindmap live preview enabled"))
+    (progn
+      (remove-hook 'after-save-hook #'org-mindmap-live-preview-generate t)
+      (message "Org-mindmap live preview disabled"))))
+
+;; Key binding for toggling live preview
+(map! :leader
+      :prefix ("d" . "latex")
+      :desc "Toggle org-mindmap live preview" "m" #'org-mindmap-toggle-live-preview)
+#+end_src
+
+* Tramp
+** Let Tramp reused the connection
+#+begin_src emacs-lisp
+(after! tramp
+  (setq tramp-ssh-controlmaster-options
+        (concat
+         "-o ControlPath=~/.ssh/tmp/%%r@%%h:%%p "
+         "-o ControlMaster=auto -o ControlPersist=yes")))
+#+end_src
+
+[[https://github.com/doomemacs/doomemacs/issues/3909][tramp slow]]
+#+begin_src emacs-lisp
+(after! tramp
+  (setq tramp-inline-compress-start-size 1000)
+  (setq tramp-copy-size-limit 10000)
+  (setq vc-handled-backends '(Git))
+  (setq tramp-verbose 1)
+  (setq tramp-default-method "ssh")
+  ;(setq tramp-use-ssh-controlmaster-options nil)
+  (setq projectile--mode-line "Projectile")
+  (setq tramp-verbose 1))
+#+end_src
+
+#+RESULTS:
+
+*** With EditorConfig
+#+begin_src emacs-lisp
+(setq editorconfig-exclude-regexps '("^/ssh:" "^/sudo:" "^/su:", "/sshx:"))
+#+end_src
+
+
+# * Corfu
+# #+begin_src emacs-lisp
+# (setq corfu-auto        t
+#       corfu-auto-delay  0.1  ;; TOO SMALL - NOT RECOMMENDED!
+#       corfu-auto-prefix 1) ;; TOO SMALL - NOT RECOMMENDED!
+
+# (add-hook 'corfu-mode-hook
+#           (lambda ()
+#             ;; Settings only for Corfu
+#             (setq-local
+#              completion-ignore-case t
+#                         completion-category-overrides nil
+#                         completion-category-defaults nil)))
+# #+end_src
+
+# ** Corfu in org mode
+# #+begin_src emacs-lisp
+# (use-package yasnippet
+#   :diminish yas-minor-mode
+#   :custom (yas-keymap-disable-hook
+#            (lambda ()
+#              (and (frame-live-p corfu--frame)
+#                   (frame-visible-p corfu--frame))))
+#   :hook (after-init . yas-global-mode))
+
+# #+end_src
+
+# ** Corfu in eshell
+# #+begin_src emacs-lisp
+# (add-hook 'eshell-mode-hook (lambda ()
+#                               (setq-local corfu-auto nil)
+#                               (corfu-mode)))
+# #+end_src
+
+# ** Corfu in minibuffer
+# #+begin_src emacs-lisp
+# (setq global-corfu-minibuffer
+#       (lambda ()
+#         (not (or (bound-and-true-p mct--active)
+#                  (bound-and-true-p vertico--input)
+#                  (eq (current-local-map) read-passwd-map)))))
+# #+end_src
+
+* Copilot Setting
+
+#+begin_src emacs-lisp
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+#+end_src
+
+
+
+
+
+* Latex tikz preamable
+
+#+begin_src emacs-lisp
+(add-to-list 'org-latex-packages-alist
+             '("" "tikz" t))
+
+(eval-after-load "preview"
+  '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t))
+(setq org-latex-create-formula-image-program 'dvisvgm)
+
+
+(with-eval-after-load 'preview ;; Ensures 'preview.el' is fully loaded first
+  ;; Use condition-case for safer modification
+  (condition-case err
+      (progn
+        ;; Check if the variable exists and has a value before appending
+        ;; If it doesn't exist or is nil, start the preamble fresh.
+        (let ((existing-preamble (if (and (boundp 'preview-latex-preamble) preview-latex-preamble)
+                                     (concat preview-latex-preamble "\n")
+                                   "")))
+          (setq preview-latex-preamble
+                (concat existing-preamble
+                        ;; Load necessary packages (ensure they are available)
+                        "\\usepackage{xcolor} %% Needed for defining/using colors like 'white'\n"
+                        "\\usepackage{tikz}\n"
+                        "\\usetikzlibrary{backgrounds} %% Load the backgrounds library for TikZ\n"
+                        ;; Apply settings globally *within the preview context* to all tikzpictures
+                        "\\tikzset{\n"
+                        "  every picture/.style={show background rectangle, %% Enable the background feature\n"
+                        "                      background rectangle/.style={fill=white} %% Set the background fill to white\n"
+                        "                     }\n"
+                        "}\n"))))
+    ;; Catch potential errors during the modification
+    (error (message "Error customizing preview-latex-preamble: %s" (error-message-string err)))))
+
+#+end_src
+
+#+RESULTS:
+: (\RequirePackage[ (, . preview-default-option-list) ]{preview}[2004/11/05] \PreviewEnvironment{tikzpicture})
+
+
+* Wolfram
+
+#+begin_src emacs-lisp
+;; Load mathematica from contrib
+;; Sanitize output and deal with paths
+;;(setq org-babel-mathematica-command "~/.local/bin/mash")
+;; (setq org-babel-mathematica-command "/Applications/Wolfram.app/Contents/MacOS/MathKernel")
+;; (setq org-babel-mathematica-command "wolframscript -script")
+;; ;; Font-locking
+;; (add-to-list 'org-src-lang-modes '("mathematica" . wolfram))
+;; ;; For wolfram-mode
+;; (setq mathematica-command-line "~/.local/bin/mash")
+;; (setq wolfram-path "~/.Mathematica/Applications") ;; e.g. on Linux "~/.Mathematica/Applications"
+#+end_src
+
+#+RESULTS:
+: ~/.Mathematica/Applications
+
+
+
+* Org IEEE format
+
+#+begin_src emacs-lisp
+(eval-after-load 'ox-latex
+  '(add-to-list 'org-latex-classes
+                '("IEEEtran"
+                  "\\documentclass{IEEEtran}" ;; You can add default options here, e.g., [conference]
+                  ("\\section{%s}" . "\\section*{%s}")
+                  ("\\subsection{%s}" . "\\subsection*{%s}")
+                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
+
+
+
+* Lean
+
+#+begin_src emacs-lisp
+(add-hook! 'lean4-mode-hook
+  ;; do whatever your hook is supposed to do here
+  (lsp))
+(add-to-list 'warning-suppress-log-types '(lsp-mode))
+#+end_src
+
+
+
+* Tramp Sudo
+#+begin_src emacs-lisp
+(defun sudo-shell-command-on-region (start end)
+  "Run shell command with sudo on the region START END."
+  (interactive "r")
+  (let ((command (read-shell-command "Sudo shell command on region: ")))
+    (shell-command-on-region start end (concat "sudo " command) nil t))) ; nil=no output buffer, t=replace region
+
+;; Optional: Bind it to a key
+;; (global-set-key (kbd "C-c |") 'sudo-shell-command-on-region)
+#+end_src
+
+
+
+* Google calender sync
+#+begin_src emacs-lisp
+(setq org-gcal-client-id (getenv "GOOGLE_CLIENT_ID")
+      org-gcal-client-secret (getenv "GOOGLE_CLIENT_SECRET")
+      org-gcal-fetch-file-alist '(("william950615@gmail.com" .  "~/schedule.org")
+                                  ))
+#+end_src
+
+
+
+* org roam
+
+#+begin_src emacs-lisp
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+
+#+end_src
+
+
+
+* ProjectTile
+#+begin_src emacs-lisp
+(setq projectile-project-search-path '("~/Desktop/NYCU/"))
+(require 'projectile)
+(setq projectile-auto-cleanup-known-projects t)
+(projectile-mode +1)
+#+end_src
+
+
+
+* Atomic-chrone
+#+begin_src emacs-lisp
+(use-package! atomic-chrome
+  :config
+  (setq atomic-chrome-extension-type-list '(atomic-chrome))
+    (setq-default atomic-chrome-url-major-mode-alist
+                '(("gemini.google.com" . org-mode)
+                  ("www.messenger.com" . org-mode)
+                  ("w3schools.com" . js-ts-mode)))
+  (atomic-chrome-start-server))
+#+end_src
+
+
+** GPTEL
+#+begin_src emacs-lisp
+(gptel-make-gh-copilot "Copilot")
+;; OPTIONAL configuration
+;; (setq gptel-model 'claude-3.7-sonnet
+;;      gptel-backend (gptel-make-gh-copilot "Copilot"))
+#+end_src
+
+
+
+** Magit hook ( deprecate)
+#+begin_sample emacs-lisp
+(defun run-pre-commit ()
+  "Run `pre-commit`, collect output and, in case of errors, raise a
+buffer with the collected output. Skip if no pre-commit actions available."
+  (when (executable-find "pre-commit")
+    (let ((pre-commit-buffer (get-buffer-create "*pre-commit*"))
+          (process-environment (append '("CI=true" "TERM=dumb") process-environment)))
+      ;; Check if pre-commit has any hooks configured
+      (let ((check-result (call-process "pre-commit" nil nil nil "run" "--all-files" "--dry-run")))
+        (when (zerop check-result)  ; Only run if there are actual hooks
+          (if (not (zerop (call-process "pre-commit" nil pre-commit-buffer nil "run" "--color" "never")))
+              (let ((display-buffer-alist '((".*" display-buffer-below-selected))))
+                (with-current-buffer pre-commit-buffer
+                  (ansi-color-apply-on-region (point-min) (point-max)))
+                (display-buffer pre-commit-buffer)))))))))
+
+(add-hook 'magit-pre-start-git-hook #'run-pre-commit)
+
+#+end_sample_
+
+
+
+* floting terminal
+#+begin_src emacs-lisp
+(after! (vterm projectile posframe)
+  (defun my-floating-project-vterm-toggle (&optional arg)
+    "Toggle a floating vterm buffer per project (in project root).
+With prefix ARG (C-u), open in the current directory instead."
+    (interactive "P")
+    (let* ((proj-root (unless arg (projectile-project-root)))
+           (dir (or proj-root default-directory))
+           (proj-name (when proj-root (projectile-project-name)))
+           (buf-name (if proj-name
+                         (format "*vterm:%s*" proj-name)
+                       "*vterm-current-dir*"))
+           (buf (get-buffer-create buf-name)))
+      (if (posframe-workable-p)
+          (let ((win (get-buffer-window buf t)))  ; Check for any window displaying the buffer
+            (if win
+                (progn
+                  (posframe-hide buf-name)
+                  (select-frame-set-input-focus (selected-frame)))  ; Restore focus to parent frame
+              (with-current-buffer buf
+                (unless (process-live-p (get-buffer-process buf))
+                  (let ((default-directory dir))
+                    (condition-case err
+                        (vterm buf-name)
+                      (error (message "vterm failed to start: %s" err)))))
+                (posframe-show buf-name
+                               :width 80
+                               :height 24
+                               :min-width 80
+                               :min-height 24
+                               :border-width 2
+                               :border-color "gray50"
+                               :background-color "black"
+                               :foreground-color "white"
+                               :poshandler #'posframe-poshandler-frame-center
+                               :override-parameters '((parent-frame . (selected-frame)))))))
+        (message "Child frames not supported in this environment.")))))
+
+;; Bind to SPC o v
+(map! :leader
+      :desc "Toggle floating project vterm"
+      "o v" #'my-floating-project-vterm-toggle)
+#+end_src

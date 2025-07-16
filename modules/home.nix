@@ -36,6 +36,11 @@
     ".gitconfig-csit".source = ../config/gitconfig/gitconfig-csit;
   };
 
+  home.packages = with pkgs; [
+    flutter
+    direnv
+  ];
+
   xdg.configFile."doom" = {
     source = ../config/doom;
     recursive = true;
@@ -56,5 +61,11 @@
     #   ll = "ls -l";
     #   update = "sudo nixos-rebuild switch";
     # };
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
   };
 }
