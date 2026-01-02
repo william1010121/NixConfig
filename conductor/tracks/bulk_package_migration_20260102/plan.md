@@ -16,8 +16,8 @@ This plan outlines the steps to migrate a bulk list of packages into the Nix-Dar
 
 ## Phase 3: Implementation
 
-- [ ] Task: Populate `home.packages` in `modules/packages.nix` with the identified Nix packages.
-- [ ] Task: Update `homebrew.brews` in `flake.nix` with the identified Homebrew-only packages.
+- [x] Task: Populate `home.packages` in `modules/packages.nix` with the identified Nix packages.
+- [x] Task: Update `homebrew.brews` in `flake.nix` with the identified Homebrew-only packages. (None identified)
 - [ ] Task: Conductor - User Manual Verification 'Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Verification and Activation
