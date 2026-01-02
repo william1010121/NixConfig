@@ -17,8 +17,6 @@
         pkgs.vim
         pkgs.neovim
         # skhd package is still needed for the service to use.
-        pkgs.skhd
-        pkgs.yabai
         pkgs.lazygit
       ];
 
