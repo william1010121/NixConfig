@@ -1,6 +1,6 @@
 # Track Plan: Migrate yabai and skhd to Homebrew
 
-## Phase 1: Preparation and Cleanup
+## Phase 1: Preparation and Cleanup [checkpoint: 7159327]
 This phase focuses on safely removing the existing Nix-managed setup to prevent conflicts.
 
 - [x] Task: Disable yabai and skhd services in Nix configuration a652196
