@@ -1,6 +1,6 @@
 # Plan: Investigation - yabai Space Destruction Failure
 
-## Phase 1: Diagnosis and Information Gathering
+## Phase 1: Diagnosis and Information Gathering [checkpoint: 941eaf7]
 - [x] Task: Verify environment and logs
     - [x] Check `yabai --version` and ensure it's up to date.
     - [x] Check `yabai -m query --spaces` to see how spaces are indexed.
@@ -8,7 +8,7 @@
 - [x] Task: Test command variants
     - [x] Attempt `yabai -m space --destroy <index>` for a specific index.
     - [x] Test destruction on a secondary display vs. primary display.
-- [~] Task: Conductor - User Manual Verification 'Diagnosis and Information Gathering' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Diagnosis and Information Gathering' (Protocol in workflow.md)
 
 ## Phase 2: Root Cause Analysis & Fix Experimentation
 - [ ] Task: Re-validate Scripting Additions
