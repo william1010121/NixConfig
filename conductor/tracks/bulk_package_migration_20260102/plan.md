@@ -8,11 +8,11 @@ This plan outlines the steps to migrate a bulk list of packages into the Nix-Dar
 - [x] Task: Create a tracking document/log of the mapping for verification. cffada4
 - [x] Task: Conductor - User Manual Verification 'Analysis and Mapping' (Protocol in workflow.md) cffada4
 
-## Phase 2: Scaffolding
+## Phase 2: Scaffolding [checkpoint: a21512d]
 
-- [x] Task: Create `modules/packages.nix` as a skeleton Home Manager module.
-- [x] Task: Modify `modules/home.nix` to import `./packages.nix`.
-- [ ] Task: Conductor - User Manual Verification 'Scaffolding' (Protocol in workflow.md)
+- [x] Task: Create `modules/packages.nix` as a skeleton Home Manager module. a21512d
+- [x] Task: Modify `modules/home.nix` to import `./packages.nix`. a21512d
+- [x] Task: Conductor - User Manual Verification 'Scaffolding' (Protocol in workflow.md) a21512d
 
 ## Phase 3: Implementation
 
