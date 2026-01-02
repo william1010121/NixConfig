@@ -46,6 +46,7 @@
           "git"
           "yabai"
           "skhd"
+          "brotli"
         ];
       };
     };

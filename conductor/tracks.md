@@ -4,5 +4,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-## [ ] Track: Migrate yabai and skhd from Nix management to Homebrew to use the latest versions, ensuring old launchd services are properly removed.
-*Link: [./conductor/tracks/migrate_yabai_skhd_20260102/](./conductor/tracks/migrate_yabai_skhd_20260102/)*
+## [~] Track: Investigation - yabai Space Destruction Failure
+*Link: [./conductor/tracks/yabai_space_destroy_20260102/](./conductor/tracks/yabai_space_destroy_20260102/)*

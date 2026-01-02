@@ -7,9 +7,10 @@
 ## System & User Management
 - **nix-darwin:** Provides declarative configuration for macOS, managing system-level packages, services, and preferences.
 - **Home Manager:** Manages the user environment, including dotfiles and user-specific application configurations, integrated with nix-darwin.
+- **Homebrew:** Integrated with nix-darwin's `homebrew` module to manage packages that require the latest versions not yet in nixpkgs, such as window management tools.
 
 ## Key Managed Tools
-- **Window Management:** `yabai` (tiling window manager) and `skhd` (hotkey daemon).
+- **Window Management (Homebrew Managed):** `yabai` (tiling window manager) and `skhd` (hotkey daemon).
 - **Editors:** `vim` and `neovim` for terminal-based text editing.
 - **Git Utilities:** `lazygit` for an interactive TUI for Git operations.
 
