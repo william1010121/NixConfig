@@ -2,11 +2,11 @@
 
 This plan outlines the steps to migrate a bulk list of packages into the Nix-Darwin and Home Manager configuration, following a "Nixpkgs First" strategy.
 
-## Phase 1: Analysis and Mapping
+## Phase 1: Analysis and Mapping [checkpoint: cffada4]
 
-- [x] Task: Map package list to Nixpkgs vs Homebrew. Identify which packages from the user's list are available in Nixpkgs and which must remain in Homebrew.
-- [x] Task: Create a tracking document/log of the mapping for verification.
-- [ ] Task: Conductor - User Manual Verification 'Analysis and Mapping' (Protocol in workflow.md)
+- [x] Task: Map package list to Nixpkgs vs Homebrew. Identify which packages from the user's list are available in Nixpkgs and which must remain in Homebrew. cffada4
+- [x] Task: Create a tracking document/log of the mapping for verification. cffada4
+- [x] Task: Conductor - User Manual Verification 'Analysis and Mapping' (Protocol in workflow.md) cffada4
 
 ## Phase 2: Scaffolding
 
