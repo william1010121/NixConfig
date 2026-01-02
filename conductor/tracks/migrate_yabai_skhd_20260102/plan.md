@@ -3,7 +3,7 @@
 ## Phase 1: Preparation and Cleanup
 This phase focuses on safely removing the existing Nix-managed setup to prevent conflicts.
 
-- [ ] Task: Disable yabai and skhd services in Nix configuration
+- [x] Task: Disable yabai and skhd services in Nix configuration a652196
     - **Description:** Edit `modules/window-manager.nix` (or `flake.nix` and `home.nix`) to remove `services.yabai.enable = true` and `services.skhd.enable = true`, and remove the packages from `environment.systemPackages`.
     - **Step 1:** Locate the service definitions for yabai and skhd.
     - **Step 2:** Comment out or remove the configuration blocks and package additions.
