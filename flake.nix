@@ -33,6 +33,18 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
       system.primaryUser = "guoshengwei";
+
+      homebrew = {
+        enable = true;
+        onActivation.cleanup = "zap";
+        taps = [
+          "koekeishiya/formulae"
+        ];
+        brews = [
+          "yabai"
+          "skhd"
+        ];
+      };
     };
   in
   {
