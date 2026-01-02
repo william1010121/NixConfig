@@ -20,9 +20,9 @@ This plan outlines the steps to migrate a bulk list of packages into the Nix-Dar
 - [x] Task: Update `homebrew.brews` in `flake.nix` with the identified Homebrew-only packages. (None identified) 05cd28f
 - [x] Task: Conductor - User Manual Verification 'Implementation' (Protocol in workflow.md) 05cd28f
 
-## Phase 4: Verification and Activation
+## Phase 4: Verification and Activation [checkpoint: d0c1023]
 
-- [ ] Task: Dry-run the configuration update. Run `darwin-rebuild build --flake .` to ensure there are no evaluation or build errors.
-- [ ] Task: Apply the configuration. Run `darwin-rebuild switch --flake .`.
-- [ ] Task: Verify package availability. Spot-check a few migrated packages (e.g., `cmake --version`, `sqlite3 --version`) to ensure they are correctly installed and linked.
-- [ ] Task: Conductor - User Manual Verification 'Verification and Activation' (Protocol in workflow.md)
+- [x] Task: Dry-run the configuration update. Run `darwin-rebuild build --flake .` to ensure there are no evaluation or build errors. d0c1023
+- [x] Task: Apply the configuration. Run `darwin-rebuild switch --flake .`. d0c1023
+- [x] Task: Verify package availability. Spot-check a few migrated packages (e.g., `cmake --version`, `sqlite3 --version`) to ensure they are correctly installed and linked. d0c1023
+- [x] Task: Conductor - User Manual Verification 'Verification and Activation' (Protocol in workflow.md) d0c1023
