@@ -18,7 +18,7 @@ This phase focuses on safely removing the existing Nix-managed setup to prevent 
 ## Phase 2: Homebrew Installation and Configuration
 This phase handles the installation of the tools via Homebrew and setting up their services.
 
-- [ ] Task: Declare Homebrew packages in Nix (or install manually)
+- [x] Task: Declare Homebrew packages in Nix (or install manually) 9c2ab6c
     - **Description:** We will use nix-darwin's `homebrew` module to manage these packages declaratively if possible, or instruct for manual installation if that's the user's preference for "latest" (since nix-managed brewfiles are good). Let's assume declarative management via `homebrew.brews`.
     - **Step 1:** In `flake.nix` (or a dedicated module), configure the `homebrew` section.
     - **Step 2:** Add `"yabai"` and `"skhd"` to the `homebrew.brews` list.
