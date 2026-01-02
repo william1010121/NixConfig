@@ -10,8 +10,8 @@ This plan outlines the steps to migrate a bulk list of packages into the Nix-Dar
 
 ## Phase 2: Scaffolding
 
-- [ ] Task: Create `modules/packages.nix` as a skeleton Home Manager module.
-- [ ] Task: Modify `modules/home.nix` to import `./packages.nix`.
+- [x] Task: Create `modules/packages.nix` as a skeleton Home Manager module.
+- [x] Task: Modify `modules/home.nix` to import `./packages.nix`.
 - [ ] Task: Conductor - User Manual Verification 'Scaffolding' (Protocol in workflow.md)
 
 ## Phase 3: Implementation
