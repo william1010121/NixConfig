@@ -10,7 +10,7 @@ This phase focuses on safely removing the existing Nix-managed setup to prevent 
     - **Step 3:** Rebuild the darwin configuration (`darwin-rebuild switch --flake .`) to apply changes.
     - **Verification:** Run `launchctl list | grep -E 'yabai|skhd'` to ensure the services are no longer running/loaded.
 
-- [ ] Task: Manually verify and kill lingering processes
+- [x] Task: Manually verify and kill lingering processes [shell-only]
     - **Description:** Ensure no orphan `yabai` or `skhd` processes are running.
     - **Step 1:** Run `pkill yabai` and `pkill skhd`.
     - **Step 2:** Check for any remaining launch agents/daemons in `~/Library/LaunchAgents` or `/Library/LaunchDaemons` that might have been left behind (though nix-darwin usually handles this).
