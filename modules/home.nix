@@ -34,6 +34,8 @@
     ".vimrc".source = ../config/vimrc;
     ".gitconfig".source = ../config/gitconfig/gitconfig;
     ".gitconfig-csit".source = ../config/gitconfig/gitconfig-csit;
+    ".yabairc".source = ../config/yabairc;
+    ".skhdrc".source = ../config/skhdrc;
   };
 
   home.packages = with pkgs; [

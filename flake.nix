@@ -41,6 +41,9 @@
           "koekeishiya/formulae"
         ];
         brews = [
+          "gettext"
+          "pcre2"
+          "git"
           "yabai"
           "skhd"
         ];
