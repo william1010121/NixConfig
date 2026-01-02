@@ -6,3 +6,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ## [~] Track: Investigation - yabai Space Destruction Failure
 *Link: [./conductor/tracks/yabai_space_destroy_20260102/](./conductor/tracks/yabai_space_destroy_20260102/)*
+
+---
+
+## [~] Track: Bulk Package Migration to Home Manager
+*Link: [./conductor/tracks/bulk_package_migration_20260102/](./conductor/tracks/bulk_package_migration_20260102/)*

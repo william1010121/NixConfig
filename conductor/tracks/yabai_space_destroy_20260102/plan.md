@@ -10,22 +10,22 @@
     - [x] Test destruction on a secondary display vs. primary display.
 - [x] Task: Conductor - User Manual Verification 'Diagnosis and Information Gathering' (Protocol in workflow.md)
 
-## Phase 2: Root Cause Analysis & Fix Experimentation
-- [ ] Task: Re-validate Scripting Additions
-    - [ ] Force a reload of scripting additions: `sudo yabai --load-sa`.
-    - [ ] Verify `yabai` has necessary Accessibility and Screen Recording permissions in System Settings.
-- [ ] Task: Investigate macOS 16 Specifics
-    - [ ] Search for known issues regarding `yabai` space destruction on macOS 16 (Sequoia/Future).
-    - [ ] Test if manual space destruction (Mission Control) works to rule out OS-level locks.
-- [ ] Task: Implement Fix or Workaround
-    - [ ] If a configuration change is needed, apply it to `modules/window-manager.nix`.
-    - [ ] If it's a known bug with a workaround (e.g., specific timing or sequence), implement the script/logic.
-- [ ] Task: Conductor - User Manual Verification 'Root Cause Analysis & Fix Experimentation' (Protocol in workflow.md)
+## Phase 2: Root Cause Analysis & Fix Experimentation [checkpoint: a95553c]
+- [x] Task: Re-validate Scripting Additions
+    - [x] Force a reload of scripting additions: `sudo yabai --load-sa`.
+    - [x] Verify `yabai` has necessary Accessibility and Screen Recording permissions in System Settings.
+- [x] Task: Investigate macOS 16 Specifics
+    - [x] Search for known issues regarding `yabai` space destruction on macOS 16 (Sequoia/Future).
+    - [x] Test if manual space destruction (Mission Control) works to rule out OS-level locks.
+- [x] Task: Implement Fix or Workaround
+    - [x] If a configuration change is needed, apply it to `modules/window-manager.nix`.
+    - [x] If it's a known bug with a workaround (e.g., specific timing or sequence), implement the script/logic.
+- [~] Task: Conductor - User Manual Verification 'Root Cause Analysis & Fix Experimentation' (Protocol in workflow.md)
 
 ## Phase 3: Integration and Finalization
-- [ ] Task: Update Nix Configuration
-    - [ ] Ensure any necessary changes are committed to the `nix-darwin` flake.
-    - [ ] Run `darwin-rebuild switch --flake .` to verify the setup remains stable.
-- [ ] Task: Document Findings
-    - [ ] Update `config/yabairc` or add comments in `modules/window-manager.nix` explaining the fix for macOS 16.
-- [ ] Task: Conductor - User Manual Verification 'Integration and Finalization' (Protocol in workflow.md)
+- [x] Task: Update Nix Configuration
+    - [x] Ensure any necessary changes are committed to the `nix-darwin` flake.
+    - [x] Run `darwin-rebuild switch --flake .` to verify the setup remains stable.
+- [x] Task: Document Findings
+    - [x] Update `config/yabairc` or add comments in `modules/window-manager.nix` explaining the fix for macOS 16.
+- [~] Task: Conductor - User Manual Verification 'Integration and Finalization' (Protocol in workflow.md)

@@ -52,7 +52,7 @@
     };
   in
   {
-    darwinConfigurations."macos" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."william-2" = nix-darwin.lib.darwinSystem {
       modules = [
         ./modules/window-manager.nix
         configuration
