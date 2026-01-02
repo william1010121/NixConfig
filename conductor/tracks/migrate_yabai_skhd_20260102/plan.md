@@ -26,14 +26,14 @@ This phase handles the installation of the tools via Homebrew and setting up the
     - **Step 4:** Rebuild the darwin configuration.
     - **Verification:** Run `brew list yabai` and `brew list skhd` to confirm installation.
 
-- [ ] Task: Configure and Start Services
+- [x] Task: Configure and Start Services 57b0ae2
     - **Description:** Start the services using `yabai` and `skhd`'s service management (usually `brew services`).
     - **Step 1:** Run `yabai --start-service` (or `brew services start yabai`) and `skhd --start-service` (or `brew services start skhd`).
     - **Step 2:** Verify they are running with `brew services list`.
 
-- [ ] Task: Restore/Link Configuration Files
+- [x] Task: Restore/Link Configuration Files 57b0ae2
     - **Description:** Ensure `~/.yabairc` and `~/.skhdrc` exist and are effective.
     - **Step 1:** If these files were symlinked by Nix, we need to ensure they are still managed by Home Manager or Nix, OR manually moved to the home directory if we are decoupling config management too (unlikely). We will assume we keep config management in Nix/Home Manager but point the files to `~/.config/yabai/yabairc` etc or `~/.yabairc`.
     - **Step 2:** Verify that the installed `yabai` and `skhd` are reading the correct config files.
 
-- [ ] Task: Conductor - User Manual Verification 'Homebrew Installation and Configuration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Homebrew Installation and Configuration' (Protocol in workflow.md) [checkpoint: 57b0ae2]
