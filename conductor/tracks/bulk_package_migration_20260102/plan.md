@@ -14,11 +14,11 @@ This plan outlines the steps to migrate a bulk list of packages into the Nix-Dar
 - [x] Task: Modify `modules/home.nix` to import `./packages.nix`. a21512d
 - [x] Task: Conductor - User Manual Verification 'Scaffolding' (Protocol in workflow.md) a21512d
 
-## Phase 3: Implementation
+## Phase 3: Implementation [checkpoint: 05cd28f]
 
-- [x] Task: Populate `home.packages` in `modules/packages.nix` with the identified Nix packages.
-- [x] Task: Update `homebrew.brews` in `flake.nix` with the identified Homebrew-only packages. (None identified)
-- [ ] Task: Conductor - User Manual Verification 'Implementation' (Protocol in workflow.md)
+- [x] Task: Populate `home.packages` in `modules/packages.nix` with the identified Nix packages. 05cd28f
+- [x] Task: Update `homebrew.brews` in `flake.nix` with the identified Homebrew-only packages. (None identified) 05cd28f
+- [x] Task: Conductor - User Manual Verification 'Implementation' (Protocol in workflow.md) 05cd28f
 
 ## Phase 4: Verification and Activation
 
