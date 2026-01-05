@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [
+    (writeShellScriptBin "reset-doom-config" (builtins.readFile ../config/reset-doom-config.sh))
     abseil-cpp
     adwaita-icon-theme
     aribb24
@@ -69,8 +70,10 @@
     llvmPackages.openmp
     lzo
     metis
+    nodejs
     openblas
     openexr
+    openfortivpn
     openjpeg
     openjph
     openssl
