@@ -77,6 +77,7 @@
     openjpeg
     openjph
     openssl
+    openssl.out
     pango
     python313
     python3Packages.cffi
