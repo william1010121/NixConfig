@@ -12,7 +12,7 @@
 - [x] Task: Conductor - User Manual Verification 'Configuration & Installation' (Protocol in workflow.md)
 
 ## Phase 2: Verification
-- [~] Task: Verify Installation
-    - [ ] Run `openfortivpn --version` to ensure the binary executes and libraries load correctly.
-    - [ ] Check that `sudo openfortivpn --help` works (basic sudo check).
-- [ ] Task: Conductor - User Manual Verification 'Verification' (Protocol in workflow.md)
+- [x] Task: Verify Installation
+    - [x] Run `openfortivpn --version` to ensure the binary executes and libraries load correctly.
+    - [x] Check that `sudo openfortivpn --help` works (basic sudo check). f01dbfb
+- [~] Task: Conductor - User Manual Verification 'Verification' (Protocol in workflow.md)
