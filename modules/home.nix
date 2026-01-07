@@ -47,11 +47,11 @@
     direnv
   ];
 
-  xdg.configFile."doom" = {
-    source = ../config/doom;
-    recursive = true;
-    force = true;
-  };
+  # xdg.configFile."doom" = {
+  #   source = ../config/doom;
+  #   recursive = true;
+  #   force = true;
+  # };
 
   programs.zsh = {
     enable = true;

@@ -77,11 +77,7 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -210,3 +206,6 @@ bindkey "^[f" forward-word
 ## [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 export PATH="$HOME/.elan/bin:$PATH"
 alias math="/Applications/Wolfram.app/Contents/MacOS/MathKernel"
+
+# NPM Global Packages
+export PATH="$HOME/.npm-global/bin:$PATH"

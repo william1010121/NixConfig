@@ -9,7 +9,8 @@ The primary objective of this project is to manage a personal workstation setup 
 ## Core Features
 - **Window Management & Hotkeys:** Comprehensive configuration for yabai and skhd to enable efficient tiling window management and keyboard-driven workflows.
 - **Shell & Terminal Environment:** Robust setup for zsh, vim, and neovim, ensuring a productive command-line experience with customized dotfiles.
-- **User-Specific Package Management:** Leveraging Home Manager to manage user-specific applications, utilities, and configuration files in a declarative manner.
+- **User-Specific Package Management:** Leveraging Home Manager with a "Nixpkgs First" strategy to manage a wide range of development tools and libraries in a declarative and reproducible manner.
+- **Mutable Configuration Management:** Hybrid approach for complex configurations like Doom Emacs, using a "Mutable Copy" model with helper scripts (`reset-doom-config`) to balance reproducibility with user experimentability.
 - **Enhanced Git Workflows:** Integration of advanced Git configurations and exploring secure secret management (e.g., sops-nix) for sensitive configuration data.
 - **Cross-Platform Integration:** Improving compatibility and integration with cloud services and tools that span multiple platforms.
 

@@ -39,6 +39,7 @@
         onActivation.cleanup = "zap";
         taps = [
           "koekeishiya/formulae"
+          "d12frosted/emacs-plus"
         ];
         brews = [
           "gettext"
@@ -47,6 +48,9 @@
           "yabai"
           "skhd"
           "brotli"
+          "libtiff"
+          "little-cms2"
+          "emacs-plus@29"
         ];
       };
     };
