@@ -52,6 +52,9 @@
           "little-cms2"
           "emacs-plus@29"
         ];
+        casks = [
+          "mactex-no-gui"
+        ];
       };
     };
   in
