@@ -9,6 +9,7 @@
     assimp
     at-spi2-core
     autoconf
+    bat
     boehmgc
     boost
     c-ares
@@ -28,6 +29,7 @@
     double-conversion
     dtc
     eigen
+    eza
     fontconfig
     freetype
     fribidi

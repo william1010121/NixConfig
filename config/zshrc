@@ -149,6 +149,8 @@ export CPPFLAGS="-I/opt/homebrew/Cellar/taglib/1.13.1/include/"
 export DISPLAY=:0
 
 alias k="kubectl"
+alias ls='eza --icons=auto --group-directories-first'
+alias ll='eza -l --header --git --icons=auto --group-directories-first'
 
 
 eval $(ssh-agent -s)
