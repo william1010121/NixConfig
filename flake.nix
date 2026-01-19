@@ -36,7 +36,7 @@
 
       homebrew = {
         enable = true;
-        onActivation.cleanup = "zap";
+        onActivation.cleanup = "none";
         taps = [
           "koekeishiya/formulae"
           "d12frosted/emacs-plus"
