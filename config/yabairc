@@ -37,12 +37,3 @@ yabai -m config external_bar all:28:0 # If not using a status bar like sketchyba
 ## focus previous window when window destroyed
 
 yabai -m signal --add event=window_destroyed action="yabai -m window --focus mouse"
-
-
-
-# Rules
-yabai -m rule --add title="^Emacs Everywhere" manage=off grid=5:5:2:2:3:3
-
-
-
-

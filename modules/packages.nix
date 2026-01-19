@@ -20,6 +20,7 @@
     cjson
     clisp
     cmake
+    copilot-language-server
     cpio
     cunit
     dav1d
