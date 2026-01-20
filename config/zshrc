@@ -172,6 +172,8 @@ alias asm="java -jar /Users/guoshengwei/Desktop/NYCU/computer\ architecture/rars
 # export CXXFLAGS="-I/opt/homebrew/opt/llvm/include/c++/v1 -I/opt/homebrew/opt/llvm/include -I$SDKROOT/usr/include"
 # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib -lc++ -lc++abi -lm"
 
+export TEXMFCNF="/opt/homebrew/opt/texlive/share/texmf-dist/web2c"
+export TEXMFDIST="/opt/homebrew/opt/texlive/share/texmf-dist"
 export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PATH=/opt/riscv/bin:$PATH
 export LIBGS="/Users/guoshengwei/lib/libgs.dylib"
@@ -210,5 +212,22 @@ export PATH="$HOME/.elan/bin:$PATH"
 alias math="/Applications/Wolfram.app/Contents/MacOS/MathKernel"
 alias wezterm="/Applications/WezTerm.app/Contents/MacOS/wezterm"
 
+
+
+
+
+
+
+
+
+
 # NPM Global Packages
 export PATH="$HOME/.npm-global/bin:$PATH"
+# General fzf options
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --inline-info"
+
+# Preview configuration for CTRL-T (files)
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}'"
+
+# Preview configuration for ALT-C (directories)
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
