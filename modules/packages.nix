@@ -43,6 +43,7 @@
     giflib
     glib
     glog
+    go
     graphite2
     harfbuzz
     hdf5
