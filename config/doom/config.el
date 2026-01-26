@@ -89,8 +89,10 @@
 
 
 
-(setq mac-option-modifier 'meta)        ; Set the Option key as Meta
-(setq mac-right-option-modifier 'meta)  ; Disable the right Option key
+;; Platform-specific: macOS modifier keys
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier 'meta)        ; Set the Option key as Meta
+  (setq mac-right-option-modifier 'meta)) ; Set right Option key as Meta
 
 ;; Add hook for org-latex-preview
 (add-hook 'org-mode-hook (lambda () (org-latex-preview-auto-mode)))
