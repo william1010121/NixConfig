@@ -45,7 +45,7 @@ shift + alt - p : /opt/homebrew/bin/yabai -m space --display prev
 alt + cmd - a : /opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap
 
 # toggle window opacity
-alt + cmd - p : /private/etc/nix-darwin/config/scripts/toggle_opacity.sh
+alt + cmd - p : /private/etc/nix-darwin/config/scripts/toggle_opacity.sh >> /tmp/skhd_exec.log 2>&1
 
 # toggle window parent zoom
 # alt - d : /opt/homebrew/bin/yabai -m window --focus mouse && \
@@ -111,6 +111,7 @@ shift + alt - 0 : /opt/homebrew/bin/yabai -m window --space 10
 # change layout of desktop
 ctrl + alt + cmd  - d : /opt/homebrew/bin/yabai -m space --layout bsp
 ctrl + alt + cmd - f : /opt/homebrew/bin/yabai -m space --layout float
+ctrl + alt + cmd - s : /opt/homebrew/bin/yabai -m space --layout stack
 
 # increase window size
 ctrl + alt + cmd - h : /opt/homebrew/bin/yabai -m window --resize left:-40:0
