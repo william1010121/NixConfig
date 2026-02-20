@@ -1,7 +1,7 @@
 # Implementation Plan: Yabai Stacking Key Bindings
 
 ## Phase 1: Verification Setup
-- [ ] Task: Create a verification script `tests/verify_stacking_bindings.sh` to check for the presence of new bindings and absence of old ones.
+- [x] Task: Create a verification script (0505f23) `tests/verify_stacking_bindings.sh` to check for the presence of new bindings and absence of old ones.
     - [ ] Add check for `ctrl + alt - j/k/s` stacking commands.
     - [ ] Add check for `ctrl + alt + cmd - h/j/k/l` increase resize commands.
     - [ ] Add check for absence of old decrease resize commands on `ctrl + alt + cmd`.
