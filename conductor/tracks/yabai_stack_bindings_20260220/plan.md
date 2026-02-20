@@ -7,7 +7,7 @@
     - [ ] Add check for absence of old decrease resize commands on `ctrl + alt + cmd`.
 
 ## Phase 2: Implementation
-- [ ] Task: Modify `config/skhdrc` to reorganize resize bindings.
+- [x] Task: Modify `config/skhdrc` to reorganize resize bindings (a2ebb2d).
     - [ ] Remove existing "Decrease window size" section.
     - [ ] Update "Increase window size" section to use `ctrl + alt + cmd`.
 - [ ] Task: Modify `config/skhdrc` to add stacking bindings.
