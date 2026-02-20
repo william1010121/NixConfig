@@ -9,5 +9,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [ ] **Track: Yabai Stacking Key Bindings**
+- [x] **Track: Yabai Stacking Key Bindings**
 *Link: [./tracks/yabai_stack_bindings_20260220/](./tracks/yabai_stack_bindings_20260220/)*
