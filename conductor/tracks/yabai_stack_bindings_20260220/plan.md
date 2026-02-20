@@ -10,7 +10,7 @@
 - [x] Task: Modify `config/skhdrc` to reorganize resize bindings (a2ebb2d).
     - [ ] Remove existing "Decrease window size" section.
     - [ ] Update "Increase window size" section to use `ctrl + alt + cmd`.
-- [ ] Task: Modify `config/skhdrc` to add stacking bindings.
+- [x] Task: Modify `config/skhdrc` to add stacking bindings (9266d73).
     - [ ] Add `ctrl + alt - j/k` for stack navigation.
     - [ ] Add `ctrl + alt - s` for `--insert stack`.
 - [ ] Task: Conductor - User Manual Verification 'Yabai Stacking Key Bindings' (Protocol in workflow.md)
