@@ -24,7 +24,17 @@ yabai -m config top_padding 05
 yabai -m config bottom_padding 10
 yabai -m config left_padding 10
 yabai -m config right_padding 10
-yabai -m config window_gap 06
+yabai -m config window_gap 10
+
+# borders config
+# active border: beautiful blue (0xff387ADF)
+# normal border: dark gray (0xff555555)
+# Note: Ensure the borders utility is installed via homebrew.
+/opt/homebrew/bin/borders \
+    active_color=0xff387ADF \
+    inactive_color=0xff555555 \
+    width=6.0 \
+    &
 
 # Scripting Additions
 # Ensure sudoers is configured to allow this without password

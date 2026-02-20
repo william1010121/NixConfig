@@ -17,6 +17,7 @@
       "git"
       "yabai"
       "skhd"
+      "borders"
       "brotli"
       "libtiff"
       "little-cms2"

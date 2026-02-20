@@ -42,7 +42,10 @@ shift + alt - p : /opt/homebrew/bin/yabai -m space --display prev
 # cmd + alt - y : /opt/homebrew/bin/yabai -m space --mirror y-axis
 
 # toggle desktop offset
-# cmd + alt - a : /opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap
+alt + cmd - a : /opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap
+
+# toggle window opacity
+alt + cmd - p : /opt/homebrew/bin/yabai -m window --toggle opacity
 
 # toggle window parent zoom
 # alt - d : /opt/homebrew/bin/yabai -m window --focus mouse && \
