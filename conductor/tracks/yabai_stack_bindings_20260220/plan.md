@@ -22,4 +22,4 @@
 - [ ] Task: Conductor - User Manual Verification 'Visual & UX Enhancements' (Protocol in workflow.md)
 - [x] Task: Create `config/scripts/toggle_opacity.sh`. (3ebf947)
 - [x] Task: Enable window opacity in `config/yabairc`. (3ebf947)
-- [ ] Task: Add `ctrl + alt + cmd - s` binding for stack layout.
+- [x] Task: Add `ctrl + alt + cmd - s` binding for stack layout. (b025cdc)
