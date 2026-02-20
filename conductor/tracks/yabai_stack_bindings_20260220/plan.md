@@ -17,8 +17,8 @@
 
 ## Phase 3: Visual & UX Enhancements
 - [x] Task: Modify `config/yabairc` to increase `window_gap` to 10. (1b6d779)
-- [ ] Task: Modify `config/skhdrc` to use toggle script for opacity.
+- [x] Task: Modify `config/skhdrc` to use toggle script for opacity. (3ebf947)
 - [x] Task: Modify `config/skhdrc` to add a binding for toggling space padding. (1b6d779)
 - [ ] Task: Conductor - User Manual Verification 'Visual & UX Enhancements' (Protocol in workflow.md)
-- [ ] Task: Create `config/scripts/toggle_opacity.sh`.
-- [ ] Task: Enable window opacity in `config/yabairc`.
+- [x] Task: Create `config/scripts/toggle_opacity.sh`. (3ebf947)
+- [x] Task: Enable window opacity in `config/yabairc`. (3ebf947)
