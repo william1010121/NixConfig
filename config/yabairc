@@ -5,9 +5,9 @@ yabai -m config mouse_follows_focus on
 yabai -m config window_placement second_child
 # yabai -m config window_topmost off # Deprecated
 # yabai -m config window_shadow on # Deprecated
-# yabai -m config window_opacity off # Deprecated
-# yabai -m config active_window_opacity 1.0 # Deprecated
-# yabai -m config normal_window_opacity 0.90 # Deprecated
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.90
 # yabai -m config window_border off # Deprecated
 # yabai -m config window_border_width 6 # Deprecated
 # yabai -m config active_window_border_color 0xff775759 # Deprecated

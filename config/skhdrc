@@ -45,7 +45,7 @@ shift + alt - p : /opt/homebrew/bin/yabai -m space --display prev
 alt + cmd - a : /opt/homebrew/bin/yabai -m space --toggle padding; /opt/homebrew/bin/yabai -m space --toggle gap
 
 # toggle window opacity
-alt + cmd - p : /opt/homebrew/bin/yabai -m window --toggle opacity
+alt + cmd - p : /private/etc/nix-darwin/config/scripts/toggle_opacity.sh
 
 # toggle window parent zoom
 # alt - d : /opt/homebrew/bin/yabai -m window --focus mouse && \

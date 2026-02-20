@@ -21,7 +21,7 @@ EXIT_CODE=0
 
 echo "--- Verifying Stacking & Visual Config ---"
 check_file_content "$SKHDRC" "ctrl + alt - j : /opt/homebrew/bin/yabai -m window --focus stack.next" "Stack Next Binding" || EXIT_CODE=1
-check_file_content "$SKHDRC" "alt + cmd - p : /opt/homebrew/bin/yabai -m window --toggle opacity" "Toggle Opacity Binding" || EXIT_CODE=1
+check_file_content "$SKHDRC" "alt + cmd - p : /private/etc/nix-darwin/config/scripts/toggle_opacity.sh" "Toggle Opacity Script Binding" || EXIT_CODE=1
 check_file_content "$SKHDRC" "alt + cmd - a : /opt/homebrew/bin/yabai -m space --toggle padding" "Toggle Padding Binding" || EXIT_CODE=1
 check_file_content "$YABAIRC" "yabai -m config window_gap 10" "Window Gap 10" || EXIT_CODE=1
 check_file_content "$YABAIRC" "active_color=0xff387ADF" "Beautiful Blue Border Color" || EXIT_CODE=1
