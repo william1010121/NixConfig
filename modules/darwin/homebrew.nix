@@ -9,6 +9,7 @@
     taps = [
       "koekeishiya/formulae"
       "d12frosted/emacs-plus"
+      "FelixKratz/formulae"
     ];
 
     brews = [
@@ -17,7 +18,7 @@
       "git"
       "yabai"
       "skhd"
-      "borders"
+      "felixkratz/formulae/borders"
       "brotli"
       "libtiff"
       "little-cms2"

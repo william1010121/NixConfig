@@ -25,6 +25,6 @@ check_file_content "$SKHDRC" "alt + cmd - p : /opt/homebrew/bin/yabai -m window 
 check_file_content "$SKHDRC" "alt + cmd - a : /opt/homebrew/bin/yabai -m space --toggle padding" "Toggle Padding Binding" || EXIT_CODE=1
 check_file_content "$YABAIRC" "yabai -m config window_gap 10" "Window Gap 10" || EXIT_CODE=1
 check_file_content "$YABAIRC" "active_color=0xff387ADF" "Beautiful Blue Border Color" || EXIT_CODE=1
-check_file_content "$HOMEBREW_CONFIG" ""borders"" "Borders Utility in Homebrew" || EXIT_CODE=1
+check_file_content "$HOMEBREW_CONFIG" "felixkratz/formulae/borders" "Borders Utility in Homebrew" || EXIT_CODE=1
 
 exit $EXIT_CODE
